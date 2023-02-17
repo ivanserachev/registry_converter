@@ -4,10 +4,11 @@ from tkinter import filedialog
 from tkinter import ttk
 from logic import *
 
+#create visual interface for application and create cv-engine. Input of class consist information for boxes - list of bank name and dictionary with bank name and adress
 class Create_form():
     def __init__(self,
-                 bank_lst,
-                 address_dict,
+                 bank_lst:list,
+                 address_dict:dict,
                  ):
         self.bank_lst=bank_lst
         self.address_dict=address_dict
@@ -17,6 +18,7 @@ class Create_form():
         self.path_pdf=''
         self.path_save=''
 
+#some functions for return users input string from boxes
     def act_bank_get(self, bank_box):
         self.bank=bank_box.get()
 
@@ -37,6 +39,7 @@ class Create_form():
         if self.path_save!='':
             messagebox.showinfo('Уведомление', f'Выбрана папка {filepath}')
 
+#main method for create and calling cv engive for transform pdf to excel
     def convert(self):
         self.act_bank_get(self.bank_box)
         self.act_account_get(self.account_box)
@@ -74,10 +77,7 @@ class Create_form():
             excel_processing(bank_name=self.bank, address=self.address, account=self.account, path=path_save)
             messagebox.showinfo('Info', 'Обработка файла ' + path_save)
 
-
-
-
-
+#method for automatic refresh box with bank adress. Refresh depend on mouse left button click. Address get from bank name-address dict
     def refresh_address(self, event):
         self.act_bank_get(self.bank_box)
         try:
@@ -88,7 +88,7 @@ class Create_form():
         except:
             pass
 
-
+#method create inteface - boxes, buttons, grid, markup
     def create_interface(self):
         app_window = Tk()
         app_window.title('Конвертер банковских выписок из PDF в Excel')

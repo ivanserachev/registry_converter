@@ -1,6 +1,7 @@
 from  interface import  *
 
-
+#create form instance, after that start logic instance
+#in this moment data warehousing in main method, because we have not many data, it isn't right
 def main():
     bank_lst = ['АО "АЛЬФА-БАНК"',
                 'ПАО "БАНК УРАЛСИБ"']

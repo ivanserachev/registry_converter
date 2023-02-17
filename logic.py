@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import camelot
 
-
+#methods for export pdf, extract info from tables by using camelot library and import to excel file
 def export_pdf(path_pdf):
     data = camelot.read_pdf(path_pdf, pages='all')
     return data
@@ -23,7 +23,7 @@ def import_to_excel(dframe: pd.DataFrame, path: str):
                     startcol=3
                     )
 
-
+#method for result file processing
 def excel_processing(bank_name: str,
                      address: str,
                      account: str,
@@ -66,6 +66,8 @@ def excel_processing(bank_name: str,
 
     workbook.save(path)
 
+#class processing extracted data - merge data to dataframe, clearning information from extra columns and rows, renaming columns
+#class of processing format depend on bank name, because registers from different banks there are differnt formats
 class Cv_processing:
     def __init__(self, data):
         self.data=data
